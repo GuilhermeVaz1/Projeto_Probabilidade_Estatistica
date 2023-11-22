@@ -29,8 +29,6 @@ int main(void){
 
 Depois, o algoritmo entra em um laço _for_, para gerar os vetores de diferentes tamanhos a cada ciclo de execução do laço. Os tamanhos são potências de base dois a começar por 2<sup>5</sup> = 32 elementos e termina com 2<sup>20</sup> = 1.048.576 elementos para ordenar. **_(Isso é passível de alteração no futuro)_**.
 
-
-
 ~~~c
 for (int exp = 5; exp <= 20; exp++){
         int size = pow(2,exp); // tamanho do vetor
@@ -82,10 +80,45 @@ long time_quick_sort(int ptr[], int size){
 }
 ~~~
 
+Um exemplo de um arquivo **_.csv_** gerado (_merge\_log_):
+
+|size  |time1 |time2 |time3 |time4 |time5 |
+|------|------|------|------|------|------|
+|32    | 1    | 1    | 1    | 2    | 2    |
+|64    | 2    | 3    | 3    | 4    | 4    |
+|128   | 6    | 8    | 8    | 8    | 11   |
+|256   | 21   | 44   | 18   | 19   | 22   |
+|512   | 51   | 54   | 60   | 51   | 48   |
+|1024  | 103  | 107  | 100  | 102  | 114  |
+|2048  | 186  | 216  | 204  | 173  | 195  |
+|4096  | 398  | 455  | 411  | 407  | 398  |
+|8192  | 866  | 886  | 829  | 828  | 845  |
+|16384 | 1770 | 1771 | 1748 | 1744 | 1749 |
+|32768 | 3889 | 3900 | 3853 | 3861 | 3898 |
+|65536 | 8213 | 8272 | 8911 | 8394 | 9246 |
+|131072| 19414| 17547| 17742| 17423| 17392|
+|262144| 37069| 37696| 37151| 37056| 38512|
+
+~~~csv
+size, time1, time2, time3, time4, time5
+32, 2, 1, 2, 3, 3
+64, 4, 5, 4, 5, 6
+128, 10, 11, 11, 12, 13
+256, 29, 29, 29, 29, 30
+512, 56, 57, 59, 60, 64
+1024, 92, 115, 125, 137, 141
+2048, 285, 202, 208, 215, 283
+4096, 433, 435, 432, 437, 469
+8192, 934, 933, 935, 938, 977
+16384, 1991, 1991, 1989, 1994, 2128
+32768, 6000, 4237, 4253, 4307, 4376
+65536, 9084, 8950, 8915, 9921, 9271
+131072, 20780, 18967, 18888, 19165, 19218
+~~~
+
 ## A fazer
 
-* Cada algoritmo será executado 5 vezes para cada um dos vetores gerados.
-* Registro das 5 execuções de cada algoritmo em arquivos **_.csv_** para cada um dos algoritmos.
+* Realizar a medição do tempo de execução do **_bubble sort_**
 * A execução do **_.exe_** será realizada pelo _script_ _python_ **_main.py_** que ainda será modificado para também ler os arquivos **_.csv_** e organizá-los em _dataframes_ do _pandas_.
 * O _script_ _python_ será modificado para também ler as informações do hardware em que os dados foram obtidos.
 * Acredito que a inserção no banco de dados deve ser feita por um outro _script_ _python_ a ser desenvolvido.

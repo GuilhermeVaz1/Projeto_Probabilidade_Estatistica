@@ -3,9 +3,9 @@
 #include <time.h>
 #include <math.h>
 #include <processthreadsapi.h>
-#include "bubble_sort.h"
-#include "merge_sort.h"
-#include "quick_sort.h"
+#include "algoritmos/bubble_sort.h"
+#include "algoritmos/merge_sort.h"
+#include "algoritmos/quick_sort.h"
 
 void generate(unsigned int ptr[], int size){ // gera os elementos do vetor
     for(int i = 0; i < size; i++){
@@ -88,21 +88,34 @@ int main(void){
     // seed da função rand
     srand(time(NULL));
 
-    // arquivo para gravar os tempos de execução das funções
-    FILE *fpt = fopen("log.csv", "w");
-    fprintf(fpt, "size, bubble_sort, merge_sort\n");
+    // arquivo para gravar os tempos de execução
+    FILE* quick_log = fopen("quick_log.csv", "w+");
+    fprintf(quick_log, "size, time1, time2, time3, time4, time5\n");
+    fflush(quick_log);
 
+    FILE* merge_log = fopen("merge_log.csv", "w");
+    fprintf(merge_log, "size, time1, time2, time3, time4, time5\n");
+    fflush(merge_log);
 
+    //quick_sort
     for (int exp = 5; exp <= 20; exp++){
         int size = pow(2,exp); // tamanho do vetor
         ptr = (unsigned int*)malloc(size * sizeof(unsigned int)); // alocação de memoria para o vetor
         generate(ptr, size); // gera os elementos do vetor
         shuffle(ptr, size); // embaralha o vetor
-        printf("%d\n", time_quick_sort(ptr, size));
+        fprintf(quick_log, "%d, %d, %d, %d, %d, %d\n", size, time_quick_sort(ptr, size), time_quick_sort(ptr, size), time_quick_sort(ptr, size), time_quick_sort(ptr, size), time_quick_sort(ptr, size));
+        fflush(quick_log);
+        fprintf(merge_log, "%d, %d, %d, %d, %d, %d\n", size, time_merge_sort(ptr, size), time_merge_sort(ptr, size), time_merge_sort(ptr, size), time_merge_sort(ptr, size), time_merge_sort(ptr, size));
+        fflush(merge_log);
         free(ptr);
     }
-    system("PAUSE");
+
+    fclose(quick_log);
+    fclose(merge_log);
+
+    
+
     free(ptr);
-    fclose(fpt);
+    fclose(merge_log);
     return 0;
 }
