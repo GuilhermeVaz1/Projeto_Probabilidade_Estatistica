@@ -118,10 +118,8 @@ int main(void){
 
     fclose(quick_log);
     fclose(merge_log);
-
-    
+    fclose(bubble_log);
 
     free(ptr);
-    fclose(merge_log);
     return 0;
 }
