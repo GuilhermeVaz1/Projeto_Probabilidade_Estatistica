@@ -50,7 +50,7 @@ long time_bubble_sort(int ptr[], int size, int i){
     free(copy);
     long elapsed = ((end.tv_sec - start.tv_sec) * 1000000) + (end.tv_usec - start.tv_usec);
     //print_vetor(copy, size);
-    printf(" Bubble sort time: %f seconds" , ((float) elapsed)/10.0e5);
+    printf(" Bubble sort time: %.2f seconds" , ((float) elapsed)/10.0e5);
     return elapsed;
 }
 
@@ -119,9 +119,9 @@ int main(void){
         printf("timing merge sort...\n");
         fprintf(merge_log, "%d, %d, %d, %d, %d, %d\n", size, time_merge_sort(ptr, size), time_merge_sort(ptr, size), time_merge_sort(ptr, size), time_merge_sort(ptr, size), time_merge_sort(ptr, size));
         fflush(merge_log);
-        printf("timing bubble sort...\n");
-        fprintf(bubble_log, "%d, %d, %d, %d, %d, %d\n", size, time_bubble_sort(ptr, size, 5), time_bubble_sort(ptr, size, 4), time_bubble_sort(ptr, size, 3), time_bubble_sort(ptr, size, 2), time_bubble_sort(ptr, size, 1));
-        fflush(bubble_log);
+        // printf("timing bubble sort...\n");
+        // fprintf(bubble_log, "%d, %d, %d, %d, %d, %d\n", size, time_bubble_sort(ptr, size, 5), time_bubble_sort(ptr, size, 4), time_bubble_sort(ptr, size, 3), time_bubble_sort(ptr, size, 2), time_bubble_sort(ptr, size, 1));
+        // fflush(bubble_log);
         free(ptr);
     }
 
