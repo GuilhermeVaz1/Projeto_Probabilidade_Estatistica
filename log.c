@@ -29,7 +29,7 @@ void print_vetor(int ptr[], int size){
     printf("\n");
 }
 
-void copy_vector(int ptr[], int size, int copy[]){
+void copy_vector(int ptr[], int size, unsigned int copy[]){
 
     for(int i = 0; i < size; i++){
         copy[i] = ptr[i];
@@ -40,12 +40,14 @@ long time_bubble_sort(int ptr[], int size){
     // variáveis para medir tempo de execução das funções
     struct timeval start, end;
 
-    int copy[size]; // gera uma cópia do vetor
+    // gera uma cópia do vetor
+    unsigned int* copy = (unsigned int*)malloc(size * sizeof(unsigned int));
     copy_vector(ptr, size, copy);
 
     mingw_gettimeofday(&start, NULL);
     bubble_sort(copy, size);
     mingw_gettimeofday(&end, NULL);
+    free(copy);
     long elapsed = ((end.tv_sec - start.tv_sec) * 1000000) + (end.tv_usec - start.tv_usec);
     //print_vetor(copy, size);
     return elapsed;
@@ -55,12 +57,14 @@ long time_merge_sort(int ptr[], int size){
     // variáveis para medir tempo de execução das funções
     struct timeval start, end;
 
-    int copy[size]; // gera uma cópia do vetor
+    // gera uma cópia do vetor
+    unsigned int* copy = (unsigned int*)malloc(size * sizeof(unsigned int));
     copy_vector(ptr, size, copy);
 
     mingw_gettimeofday(&start, NULL);
-    merge_sort(copy, 0, size - 1);
+    merge_sort(copy, size);
     mingw_gettimeofday(&end, NULL);
+    free(copy);
     long elapsed = ((end.tv_sec - start.tv_sec) * 1000000) + (end.tv_usec - start.tv_usec);
     //print_vetor(copy, size);
     return elapsed;
@@ -70,12 +74,13 @@ long time_quick_sort(int ptr[], int size){
     // variáveis para medir tempo de execução das funções
     struct timeval start, end;
 
-    int copy[size]; // gera uma cópia do vetor
+    // gera uma cópia do vetor
+    unsigned int* copy = (unsigned int*)malloc(size * sizeof(unsigned int));
     copy_vector(ptr, size, copy);
-
     mingw_gettimeofday(&start, NULL);
     quick_sort(copy, 0, size - 1);
     mingw_gettimeofday(&end, NULL);
+    free(copy);
     long elapsed = ((end.tv_sec - start.tv_sec) * 1000000) + (end.tv_usec - start.tv_usec);
     //print_vetor(copy, size);
     return elapsed;
@@ -113,9 +118,6 @@ int main(void){
     fclose(quick_log);
     fclose(merge_log);
 
-    
-
     free(ptr);
-    fclose(merge_log);
     return 0;
 }
