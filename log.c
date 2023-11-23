@@ -36,10 +36,10 @@ void copy_vector(int ptr[], int size, unsigned int copy[]){
     }
 }
 
-long time_bubble_sort(int ptr[], int size){
+long time_bubble_sort(int ptr[], int size, int i){
+        printf("\rRound %d", i); // print da ordem do bubble sort
     // variáveis para medir tempo de execução das funções
     struct timeval start, end;
-
     // gera uma cópia do vetor
     unsigned int* copy = (unsigned int*)malloc(size * sizeof(unsigned int));
     copy_vector(ptr, size, copy);
@@ -50,13 +50,13 @@ long time_bubble_sort(int ptr[], int size){
     free(copy);
     long elapsed = ((end.tv_sec - start.tv_sec) * 1000000) + (end.tv_usec - start.tv_usec);
     //print_vetor(copy, size);
+    printf(" Bubble sort time: %f seconds" , ((float) elapsed)/10.0e5);
     return elapsed;
 }
 
 long time_merge_sort(int ptr[], int size){
     // variáveis para medir tempo de execução das funções
     struct timeval start, end;
-
     // gera uma cópia do vetor
     unsigned int* copy = (unsigned int*)malloc(size * sizeof(unsigned int));
     copy_vector(ptr, size, copy);
@@ -73,7 +73,6 @@ long time_merge_sort(int ptr[], int size){
 long time_quick_sort(int ptr[], int size){
     // variáveis para medir tempo de execução das funções
     struct timeval start, end;
-
     // gera uma cópia do vetor
     unsigned int* copy = (unsigned int*)malloc(size * sizeof(unsigned int));
     copy_vector(ptr, size, copy);
@@ -112,11 +111,16 @@ int main(void){
         ptr = (unsigned int*)malloc(size * sizeof(unsigned int)); // alocação de memoria para o vetor
         generate(ptr, size); // gera os elementos do vetor
         shuffle(ptr, size); // embaralha o vetor
+        system("cls");
+        printf("Size: %d\n\n", size);
+        printf("timing quick sort...\n");
         fprintf(quick_log, "%d, %d, %d, %d, %d, %d\n", size, time_quick_sort(ptr, size), time_quick_sort(ptr, size), time_quick_sort(ptr, size), time_quick_sort(ptr, size), time_quick_sort(ptr, size));
         fflush(quick_log);
+        printf("timing merge sort...\n");
         fprintf(merge_log, "%d, %d, %d, %d, %d, %d\n", size, time_merge_sort(ptr, size), time_merge_sort(ptr, size), time_merge_sort(ptr, size), time_merge_sort(ptr, size), time_merge_sort(ptr, size));
         fflush(merge_log);
-        fprintf(bubble_log, "%d, %d, %d, %d, %d, %d\n", size, time_bubble_sort(ptr, size), time_bubble_sort(ptr, size), time_bubble_sort(ptr, size), time_bubble_sort(ptr, size), time_bubble_sort(ptr, size));
+        printf("timing bubble sort...\n");
+        fprintf(bubble_log, "%d, %d, %d, %d, %d, %d\n", size, time_bubble_sort(ptr, size, 5), time_bubble_sort(ptr, size, 4), time_bubble_sort(ptr, size, 3), time_bubble_sort(ptr, size, 2), time_bubble_sort(ptr, size, 1));
         fflush(bubble_log);
         free(ptr);
     }
