@@ -118,7 +118,6 @@ size, time1, time2, time3, time4, time5
 
 ## A fazer
 
-* Realizar a medição do tempo de execução do **_bubble sort_**
 * A execução do **_.exe_** será realizada pelo _script_ _python_ **_main.py_** que ainda será modificado para também ler os arquivos **_.csv_** e organizá-los em _dataframes_ do _pandas_.
 * O _script_ _python_ será modificado para também ler as informações do hardware em que os dados foram obtidos.
 * Acredito que a inserção no banco de dados deve ser feita por um outro _script_ _python_ a ser desenvolvido.

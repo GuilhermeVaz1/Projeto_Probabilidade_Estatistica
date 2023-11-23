@@ -97,6 +97,10 @@ int main(void){
     fprintf(merge_log, "size, time1, time2, time3, time4, time5\n");
     fflush(merge_log);
 
+    FILE* bubble_log = fopen("bubble_log.csv", "w");
+    fprintf(bubble_log, "size, time1, time2, time3, time4, time5\n");
+    fflush(bubble_log);
+
     //quick_sort
     for (int exp = 5; exp <= 20; exp++){
         int size = pow(2,exp); // tamanho do vetor
@@ -107,6 +111,8 @@ int main(void){
         fflush(quick_log);
         fprintf(merge_log, "%d, %d, %d, %d, %d, %d\n", size, time_merge_sort(ptr, size), time_merge_sort(ptr, size), time_merge_sort(ptr, size), time_merge_sort(ptr, size), time_merge_sort(ptr, size));
         fflush(merge_log);
+        fprintf(bubble_log, "%d, %d, %d, %d, %d, %d\n", size, time_bubble_sort(ptr, size), time_bubble_sort(ptr, size), time_bubble_sort(ptr, size), time_bubble_sort(ptr, size), time_bubble_sort(ptr, size));
+        fflush(bubble_log);
         free(ptr);
     }
 
