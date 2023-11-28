@@ -119,9 +119,9 @@ int main(void){
         printf("timing merge sort...\n");
         fprintf(merge_log, "%d, %d, %d, %d, %d, %d\n", size, time_merge_sort(ptr, size), time_merge_sort(ptr, size), time_merge_sort(ptr, size), time_merge_sort(ptr, size), time_merge_sort(ptr, size));
         fflush(merge_log);
-        // printf("timing bubble sort...\n");
-        // fprintf(bubble_log, "%d, %d, %d, %d, %d, %d\n", size, time_bubble_sort(ptr, size, 5), time_bubble_sort(ptr, size, 4), time_bubble_sort(ptr, size, 3), time_bubble_sort(ptr, size, 2), time_bubble_sort(ptr, size, 1));
-        // fflush(bubble_log);
+        printf("timing bubble sort...\n");
+        fprintf(bubble_log, "%d, %d, %d, %d, %d, %d\n", size, time_bubble_sort(ptr, size, 5), time_bubble_sort(ptr, size, 4), time_bubble_sort(ptr, size, 3), time_bubble_sort(ptr, size, 2), time_bubble_sort(ptr, size, 1));
+        fflush(bubble_log);
         free(ptr);
     }
 
