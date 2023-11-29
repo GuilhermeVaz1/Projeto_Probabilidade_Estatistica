@@ -2,7 +2,6 @@ import os
 import cpuinfo
 import psutil
 import datetime
-import pandas as pd
 from IPython.display import display
 
 # timestamp
