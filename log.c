@@ -106,13 +106,14 @@ int main(void){
     fflush(bubble_log);
 
     //quick_sort
-    for (int exp = 5; exp <= 20; exp++){
+    for (int exp = 1; exp <= 18; exp++){
         int size = pow(2,exp); // tamanho do vetor
         ptr = (unsigned int*)malloc(size * sizeof(unsigned int)); // alocação de memoria para o vetor
         generate(ptr, size); // gera os elementos do vetor
         shuffle(ptr, size); // embaralha o vetor
         system("cls");
-        printf("Size: %d\n\n", size);
+        printf("Size: %d\n", size);
+        printf("Size in bytes: %d\n\n", size * sizeof(unsigned int));
         printf("timing quick sort...\n");
         fprintf(quick_log, "%d, %d, %d, %d, %d, %d\n", size, time_quick_sort(ptr, size), time_quick_sort(ptr, size), time_quick_sort(ptr, size), time_quick_sort(ptr, size), time_quick_sort(ptr, size));
         fflush(quick_log);
