@@ -1,0 +1,4 @@
+Name                                     
+
+Intel(R) Core(TM) i5-2310 CPU @ 2.90GHz
+8.0

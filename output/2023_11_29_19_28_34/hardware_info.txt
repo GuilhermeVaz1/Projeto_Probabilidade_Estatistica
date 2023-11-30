@@ -1,0 +1,4 @@
+Name                                      
+
+Intel(R) Core(TM) i7-6700K CPU @ 4.00GHz
+16.0
