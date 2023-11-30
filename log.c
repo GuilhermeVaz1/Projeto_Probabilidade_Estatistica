@@ -105,7 +105,7 @@ int main(void){
     fprintf(bubble_log, "size, time1, time2, time3, time4, time5\n");
     fflush(bubble_log);
 
-    //quick_sort
+    // medição e coletas
     for (int exp = 1; exp <= 18; exp++){
         int size = pow(2,exp); // tamanho do vetor
         ptr = (unsigned int*)malloc(size * sizeof(unsigned int)); // alocação de memoria para o vetor

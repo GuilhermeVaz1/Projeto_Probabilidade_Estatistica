@@ -30,14 +30,26 @@ int main(void){
 Depois, o algoritmo entra em um laço _for_, para gerar os vetores de diferentes tamanhos a cada ciclo de execução do laço. Os tamanhos são potências de base dois a começar por 2<sup>5</sup> = 32 elementos e termina com 2<sup>20</sup> = 1.048.576 elementos para ordenar. **_(Isso é passível de alteração no futuro)_**.
 
 ~~~c
-for (int exp = 5; exp <= 20; exp++){
-        int size = pow(2,exp); // tamanho do vetor
-        ptr = (unsigned int*)malloc(size * sizeof(unsigned int)); // alocação de memoria para o vetor
-        generate(ptr, size); // gera os elementos do vetor
-        shuffle(ptr, size); // embaralha o vetor
-        printf("%d\n", time_quick_sort(ptr, size));
-        free(ptr);
-    }
+// medição e coletas
+for (int exp = 1; exp <= 18; exp++){
+    int size = pow(2,exp); // tamanho do vetor
+    ptr = (unsigned int*)malloc(size * sizeof(unsigned int)); // alocação de memoria para o vetor
+    generate(ptr, size); // gera os elementos do vetor
+    shuffle(ptr, size); // embaralha o vetor
+    system("cls");
+    printf("Size: %d\n", size);
+    printf("Size in bytes: %d\n\n", size * sizeof(unsigned int));
+    printf("timing quick sort...\n");
+    fprintf(quick_log, "%d, %d, %d, %d, %d, %d\n", size, time_quick_sort(ptr, size), time_quick_sort(ptr, size), time_quick_sort(ptr, size), time_quick_sort(ptr, size), time_quick_sort(ptr, size));
+    fflush(quick_log);
+    printf("timing merge sort...\n");
+    fprintf(merge_log, "%d, %d, %d, %d, %d, %d\n", size, time_merge_sort(ptr, size), time_merge_sort(ptr, size), time_merge_sort(ptr, size), time_merge_sort(ptr, size), time_merge_sort(ptr, size));
+    fflush(merge_log);
+    printf("timing bubble sort...\n");
+    fprintf(bubble_log, "%d, %d, %d, %d, %d, %d\n", size, time_bubble_sort(ptr, size, 5), time_bubble_sort(ptr, size, 4), time_bubble_sort(ptr, size, 3), time_bubble_sort(ptr, size, 2), time_bubble_sort(ptr, size, 1));
+    fflush(bubble_log);
+    free(ptr);
+}
 ~~~
 
 As funções **_generate()_** e **_shuffle()_** são responsáveis por gerar os elementos do vetor e depois embaralhá-lo.
